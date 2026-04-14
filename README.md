@@ -18,3 +18,4 @@ Vercel Static Site로 배포되며, GitHub push 시 자동 배포됩니다.
 
 - 서울더함수학학원 (제350호)
 - 서울더함영어학원 (제359호)
+# seouldeohamedu-website

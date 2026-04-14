@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>공고 — 서울더함에듀</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --primary: #1B6B4A;
+      --primary-light: #2A9D6E;
+      --primary-dark: #134D36;
+      --accent: #E8F5EE;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --bg: #ffffff;
+      --bg-soft: #f9fafb;
+      --border: #e5e7eb;
+      --border-light: #f3f4f6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+    }
+
+    nav .inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    nav .links a {
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover,
+    nav .links a.active {
+      color: var(--text-primary);
+    }
+
+    nav .cta-btn {
+      background: var(--text-primary);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    nav .cta-btn:hover { background: #333; }
+
+    /* ─── Page Header ─── */
+    .page-header {
+      padding: 140px 0 60px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .page-header .label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+    }
+
+    /* ─── Notice List ─── */
+    .notice-list {
+      padding: 60px 0 100px;
+    }
+
+    .notice-item {
+      display: block;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-light);
+      text-decoration: none;
+      color: inherit;
+      transition: padding-left 0.2s;
+    }
+
+    .notice-item:hover {
+      padding-left: 8px;
+    }
+
+    .notice-item .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .notice-item .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .notice-item .date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .notice-item h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .notice-item .summary {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── Notice Detail ─── */
+    .notice-detail {
+      padding: 60px 0 100px;
+    }
+
+    .notice-detail .header {
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .notice-detail .header .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .notice-detail .header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 14px;
+    }
+
+    .notice-detail .header .date {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .notice-body {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text-primary);
+    }
+
+    .notice-body p {
+      margin-bottom: 18px;
+    }
+
+    .notice-body .intro {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      padding: 24px 28px;
+      background: var(--bg-soft);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .notice-body ol.items {
+      list-style: none;
+      counter-reset: item;
+      padding: 0;
+    }
+
+    .notice-body ol.items > li {
+      counter-increment: item;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-light);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .notice-body ol.items > li:last-child {
+      border-bottom: none;
+    }
+
+    .notice-body ol.items > li .label {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .notice-body ol.items > li .label::before {
+      content: counter(item) ". ";
+      color: var(--primary);
+      margin-right: 4px;
+    }
+
+    .notice-body ol.items > li .value {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .notice-body ol.items > li .value ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .notice-body ol.items > li .value ul li {
+      padding: 2px 0;
+    }
+
+    .signature-block {
+      margin-top: 48px;
+      padding: 32px;
+      background: var(--bg-soft);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .signature-block .date {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .signature-block .company {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .signature-block .rep {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 48px;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .back-link:hover {
+      border-color: var(--text-primary);
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 48px 0;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .footer-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--text-primary); }
+
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      nav .inner { padding: 0 24px; }
+      nav .links { display: none; }
+
+      .page-header { padding: 110px 0 40px; }
+      .page-header h1 { font-size: 1.8rem; }
+
+      .notice-detail .header h2 { font-size: 1.4rem; }
+      .notice-body ol.items > li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .notice-body ol.items > li .value { padding-left: 20px; }
+
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ─── -->
+  <nav>
+    <div class="inner">
+      <a href="index.html" class="brand">서울더함에듀</a>
+      <ul class="links">
+        <li><a href="index.html#about">소개</a></li>
+        <li><a href="index.html#info">법인 정보</a></li>
+        <li><a href="index.html#academies">산하 학원</a></li>
+        <li><a href="notice.html" class="active">공고</a></li>
+      </ul>
+      <a href="index.html" class="cta-btn">홈으로</a>
+    </div>
+  </nav>
+
+  <!-- ─── Page Header ─── -->
+  <section class="page-header">
+    <div class="container">
+      <div class="label">Notice</div>
+      <h1>공고</h1>
+      <p>유한회사 서울더함에듀의 공식 공고를 게시합니다. 본 회사의 공고는 정관에 따라 회사 홈페이지(www.seouldeohamedu.kr)에 게재합니다.</p>
+    </div>
+  </section>
+
+  <!-- ─── Notice Detail: 법인 설립 공고 ─── -->
+  <section class="notice-detail">
+    <div class="container">
+
+      <div class="header">
+        <span class="tag">법인 설립</span>
+        <h2>유한회사 서울더함에듀 설립 공고</h2>
+        <div class="date">게시일: 2026년 4월 15일 · 공고 제2026-01호</div>
+      </div>
+
+      <div class="notice-body">
+        <div class="intro">
+          상법 제175조 및 관계 법령에 따라, 「유한회사 서울더함에듀」가 아래와 같이 설립되었음을 공고합니다.
+        </div>
+
+        <ol class="items">
+          <li>
+            <div class="label">상호</div>
+            <div class="value">유한회사 서울더함에듀 (영문: Seoul Deoham Edu LLC)</div>
+          </li>
+          <li>
+            <div class="label">목적</div>
+            <div class="value">
+              <ul>
+                <li>가. 교육서비스업</li>
+                <li>나. 학원운영업</li>
+                <li>다. 교육 콘텐츠 개발 및 공급업</li>
+                <li>라. 전자출판업</li>
+                <li>마. 온라인 교육 서비스업</li>
+                <li>바. 위 각 호에 관련된 부대사업 일체</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="label">본점 소재지</div>
+            <div class="value">충청북도 진천군 덕산읍 대하로 151, 401호</div>
+          </li>
+          <li>
+            <div class="label">자본금 총액</div>
+            <div class="value">금 일백만원정 (₩1,000,000)</div>
+          </li>
+          <li>
+            <div class="label">출자 1좌의 금액</div>
+            <div class="value">금 일만원정 (₩10,000)</div>
+          </li>
+          <li>
+            <div class="label">발행 총 출자좌수</div>
+            <div class="value">100좌 (박선민 100좌 · 지분율 100%)</div>
+          </li>
+          <li>
+            <div class="label">이사</div>
+            <div class="value">박선민</div>
+          </li>
+          <li>
+            <div class="label">대표이사</div>
+            <div class="value">박선민</div>
+          </li>
+          <li>
+            <div class="label">설립 연월일</div>
+            <div class="value">2026년 4월 15일</div>
+          </li>
+          <li>
+            <div class="label">공고 방법</div>
+            <div class="value">이 회사의 공고는 회사 홈페이지(https://www.seouldeohamedu.kr)에 게재한다.</div>
+          </li>
+        </ol>
+
+        <div class="signature-block">
+          <div class="date">2026년 4월 15일</div>
+          <div class="company">유한회사 서울더함에듀</div>
+          <div class="rep">대표이사 박선민</div>
+        </div>
+
+        <a href="notice.html" class="back-link">&larr; 공고 목록으로</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">서울더함에듀</div>
+          <p class="footer-desc">더하는 교육, 함께하는 성장.</p>
+        </div>
+        <div class="footer-col">
+          <h4>법인</h4>
+          <ul>
+            <li><a href="index.html#about">소개</a></li>
+            <li><a href="index.html#info">법인 정보</a></li>
+            <li><a href="notice.html">공고</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>학원</h4>
+          <ul>
+            <li><a href="index.html#academies">서울더함수학학원</a></li>
+            <li><a href="index.html#academies">서울더함영어학원</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://www.seouldeohamedu.kr">www.seouldeohamedu.kr</a></li>
+            <li>smpark47@naver.com</li>
+            <li>010-2218-8069</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 유한회사 서울더함에듀. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
